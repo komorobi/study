@@ -1,0 +1,71 @@
+{
+    "data": [
+        {
+            "name": "wu1",
+            "number": "wu1",
+            "indata": "wu1",
+            "position": "wu1",
+            "remarks": "wu1"
+        },
+        {
+            "name": "wu2",
+            "number": "w2u",
+            "indata": "wu2",
+            "position": "wu2",
+            "remarks": "wu2"
+        },
+        {
+            "name": "wu3",
+            "number": "wu3",
+            "indata": "wu3",
+            "position": "wu3",
+            "remarks": "wu3"
+        },
+        {
+            "name": "wu4",
+            "number": "wu4",
+            "indata": "wu4",
+            "position": "wu4",
+            "remarks": "wu4"
+        },
+        {
+            "name": "wu5",
+            "number": "wu5",
+            "indata": "wu5",
+            "position": "wu5",
+            "remarks": "wu5"
+        }
+    ],
+    "repository": [
+        {
+            "name": "123",
+            "owner": "tony",
+            "remarks": "想发给"
+        },
+        {
+            "name": "456",
+            "owner": "tony",
+            "remarks": "想发给"
+        },
+        {
+            "name": "2345",
+            "owner": "tony",
+            "remarks": "想发给"
+        },
+        {
+            "name": "5432",
+            "owner": "tony",
+            "remarks": "想发给"
+        },
+        {
+            "name": "452",
+            "owner": "tony",
+            "remarks": "想发给"
+        }
+    ],
+    "person": {
+        "name": "tim",
+        "id": "46122",
+        "power": "管理员"
+    }
+}
