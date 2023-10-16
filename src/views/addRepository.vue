@@ -24,18 +24,18 @@
 import { ref } from 'vue';
 import Service from '@/api/config';
 const rname = ref<HTMLInputElement | null>(null);
-const rowner = ref<HTMLElement | null>(null)
-const rremarks = ref<HTMLElement | null>(null)
+const rowner = ref<HTMLElement | null>(null);
+const rremarks = ref<HTMLElement | null>(null);
 
 function addRepository() {
-  Service.post('/addRepository')
+
+  Service.post('/addRepository', {
+    name: rname.value,
+    uuid: rowner.value,
+    info: rremarks.value
+  })
     .then(function (response) {
-      name: rname.value
-      uuid: rowner.value
-      info: rremarks.value
-    })
-    .then(function (response) {
-      console.log(response);
+
     })
     .catch(function (error) {
       console.log(error);

@@ -13,16 +13,16 @@
           <th>编辑</th>
 
         </tr>
-        <tr v-for="(item, index) in Repository" :key="item.ID" class="manger-tr">
+        <tr v-for="(item, index) in Repository" :key="item['ID']" class="manger-tr">
           <td>{{ index }}</td>
-          <td id="name">{{ item.name }}</td>
-          <td id="owner">{{ item.uuid }} <button @click="changeAdmin(index)">调整管理员</button></td>
-          <td id="remarks">{{ item.info }}</td>
+          <td id="name">{{ item["name"] }}</td>
+          <td id="owner">{{ item["uuid"] }} <button @click="changeAdmin(index)">调整管理员</button></td>
+          <td id="remarks">{{ item["info"] }}</td>
           <td class="td-set">
             <button>
-              <RouterLink to="/detail">物资详情</RouterLink>
+              <RouterLink to="/detail" @click="todetail(item['ID'])">物资详情</RouterLink>
             </button>
-            <button @click="deleterepository(index)">删除仓库</button>
+            <button @click="deleterepository(item['ID'])">删除仓库</button>
           </td>
         </tr>
       </table>
@@ -42,36 +42,45 @@ import { useRouter } from 'vue-router';
 import Service from '@/api/config';
 //import request from '../'
 import { ref } from 'vue'
+//import AddItem from '@/views/addItem.vue';
+
+//获取仓库列表
 let Repository: []
 Service.get('/getRepository')
   .then(function (response) {
 
     Repository = response.data
   })
-function deleterepository(index: number) {
-  Repository.splice(index, 1)
-  //return Repository
-}
 
+//删除仓库
+function deleterepository(ID: string) {
+  //Repository.splice(ID, 1)
+  Service.post('/deleteRepository', ID)
+    .then(function (response) {
+      alert("删除成功！")
+    })
+  Service.get('/getRepository')
+    .then(function (response) {
+      Repository = response.data
+    })
+}
+//改变uuid
 function changeAdmin(index: number) {
-  Repository.value[index].owner = ""
+  //Repository[index].uuid = ""
 
 }
 
 
 const router = useRouter();
-type Item = {
-
-  name: string,
-  owner: string,
-  remarks: string
+//传参到详情页
+function todetail(ID: string) {
+  router.push({
+    path: '/detail',
+    query: {
+      rid: ID
+    }
+  })
 }
-// function todetail(item : Item) {
-//   router.push({
-//     path: '/detail',
-//     query: item
-//   })
-// }
 
 
 

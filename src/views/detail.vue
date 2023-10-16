@@ -13,13 +13,13 @@
             <th>备注</th>
             <th>操作</th>
           </tr>
-          <tr v-for="(item, index) in Data">
+          <tr v-for="(item, index) in Data" key="Data">
             <th>{{ index }}</th>
-            <th>{{ item.name }}</th>
-            <th>{{ item.number }}</th>
-            <th>{{ item.indata }}</th>
-            <th>{{ item.position }}</th>
-            <th>{{ item.remarks }}</th>
+            <th>{{ item["name"] }}</th>
+            <th>{{ item["quantity"] }}</th>
+            <th>{{ item["indata"] }}</th>
+            <th>{{ item["location"] }}</th>
+            <th>{{ item['info'] }}</th>
             <th>
               <button @click="deleteitem(index)">删除</button>
               <button>出库/入库</button>
@@ -36,15 +36,23 @@
 </template>
 
 <script setup lang="ts">
-//import type { routeLocationKey } from 'vue-router';
-import { data } from '../components/list.json'
 import { ref } from 'vue';
-// import { useRoute } from 'vue-router'
-// const route = useRoute()
-const Data = ref(data)
+import Service from '@/api/config';
+import { useRoute } from 'vue-router';
+
+const route = useRoute()
+let Rid = route.query.rid;
+
+let Data: []
+Service.get('/getItems', Rid)
+  .then(function (response) {
+    Data = response.data
+  })
+
+
 
 function deleteitem(index: number) {
-  Data.value.splice(index, 1)
+  Data.splice(index, 1)
 }
 
 </script>
